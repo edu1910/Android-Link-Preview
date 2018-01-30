@@ -27,8 +27,15 @@ public class TextCrawler {
 
 	private AsyncTask getCodeTask;
 
+	private String userAgent;
+
 	public TextCrawler() {
+	    userAgent = "Mozilla";
 	}
+
+    public TextCrawler(String userAgent) {
+        this.userAgent = userAgent;
+    }
 
 	public void makePreview(LinkPreviewCallback callback, String url) {
 		makePreview(callback, url, ALL);
@@ -167,7 +174,7 @@ public class TextCrawler {
 		}
 
 		protected Document getDocument() throws IOException {
-			return Jsoup.connect(sourceContent.getFinalUrl()).userAgent("Mozilla").get();
+			return Jsoup.connect(sourceContent.getFinalUrl()).userAgent(userAgent).get();
 		}
 
 		/** Verifies if the content could not be retrieved */
