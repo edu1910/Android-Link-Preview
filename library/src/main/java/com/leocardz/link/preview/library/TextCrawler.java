@@ -370,11 +370,13 @@ public class TextCrawler {
 			return "";
 
 		URLConnection urlConn = connectURL(shortURL);
+        urlConn.setRequestProperty("user-agent", userAgent);
 		urlConn.getHeaderFields();
 
 		String finalResult = urlConn.getURL().toString();
 
 		urlConn = connectURL(finalResult);
+		urlConn.setRequestProperty("user-agent", userAgent);
 		urlConn.getHeaderFields();
 
 		shortURL = urlConn.getURL().toString();
